@@ -1,0 +1,63 @@
+#!/usr/bin/env python3
+import os, platform
+import getpass, random, hashlib
+import pygame
+from tkinter import *
+
+class Window:
+    def __init__(self):
+        if platform.system() == 'Windows':
+            os.environ['SDL_VIDEODRIVER'] = 'windib'
+
+        self.root = Tk()
+        self.root.attributes('-zoomed', True)  # This just maximizes it so we can see the window. It's nothing to do with fullscreen.
+        self.screen_width = self.root.winfo_screenwidth()
+        self.screen_height = self.root.winfo_screenheight()
+
+        self.embed = Frame(self.root, width=self.screen_width, height=self.screen_height) #creates embed frame for pygame window
+        self.embed.pack()
+
+        os.environ['SDL_WINDOWID'] = str(self.embed.winfo_id()) # Tell pygame's SDL window which window ID to use
+        self.root.update()
+
+        pygame.display.init()
+        self.screen = pygame.display.set_mode((self.screen_width,self.screen_height))
+        self.movie = pygame.movie.Movie('../statics/the_ring.mpeg')
+        movie.play()
+        self.pos = 0
+        while 1:
+            # Do some pygame stuff
+            self.screen.fill(pygame.Color(0,0,0))
+            self.pos = (self.pos + 1) % self.screen.get_width()
+            pygame.draw.circle(self.screen, pygame.Color(255,255,255), (self.pos,100), 30)
+
+            # Update the pygame display
+            pygame.display.flip()
+
+            # Update the Tk display
+            self.root.update()
+        # self.screen = pygame.display.set_mode((self.screen_width,self.screen_height))
+        # self.screen.fill(pygame.Color(255,255,255))
+        # pygame.display.init()
+        # pygame.display.update()
+        # # self.frame = Frame(self.tk)
+        # # self.frame.pack()
+        # self.state = False
+
+    # def toggle_fullscreen(self, event=None):
+    #     self.state = not self.state  # Just toggling the boolean
+    #     self.tk.attributes("-fullscreen", self.state)
+    #
+    # def end_fullscreen(self, event=None):
+    #     self.state = False
+    #     self.tk.attributes("-fullscreen", self.state)
+
+if __name__ == '__main__':
+    window = Window()
+    # window.tk.mainloop()
+
+# root=tk.Tk()
+# app=FullScreen(root)
+# root.mainloop()
+# root.destroy()
+

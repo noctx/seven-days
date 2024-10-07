@@ -1,0 +1,56 @@
+<html>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-rc1/jquery.min.js"></script>
+<div class="overlay">
+</div>
+<div id="top">
+
+</div>
+<div id="bottom"></div>
+<iframe id="video" src="https://www.youtube.com/embed/yiFrSgW3ZvU?rel=0&amp;autoplay=1&amp;showinfo=0&amp;controls=0&amp;border=0&amp;wmode=opaque&amp;enablejsapi=1&amp;modestbranding=1" frameborder="0" allowfullscreen></iframe>
+<style>
+body {
+  margin:0px;
+}
+.overlay {
+    /*background-color: rgba(1, 1, 1, 0.7);*/
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+}
+#top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: black;
+  /*z-index: 999;*/
+  width: 100%;
+  height: 50px;
+}
+#bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: black;
+  /*z-index: 999;*/
+  width: 100%;
+  height: 50px;
+}
+#video {
+  /*position:absolute;*/
+}
+</style>
+<script>
+$('document').ready(function(){
+  $(function(){
+  $('#video').css({ width: $(window).innerWidth() + 'px', height: $(window).innerHeight() + 'px' });
+
+    $(window).resize(function(){
+      $('#video').css({ width: $(window).innerWidth() + 'px', height: $(window).innerHeight() + 'px' });
+    });
+  });
+})
+</script>
+</html>
